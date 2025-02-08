@@ -120,9 +120,8 @@ Requires glfw
 ```
 # git clone and init submodule
 cd src/backend_scene/standalone_view
-mkdir build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_QML=ON
-make -j$nproc
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_QML=ON -DQT_MAJOR_VERSION=6 -GNinja
+cmake --build build
 
 ./sceneviewer --help
 ```
