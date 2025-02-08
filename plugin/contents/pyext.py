@@ -7,6 +7,7 @@ import base64
 import math
 import os
 import platform
+import shutil
 
 from pathlib import Path
 
@@ -40,10 +41,26 @@ class Main:
         with open(cfg_file, "r") as f:
             return json.load(f)
 
+    def read_global_config(self) -> dict:
+        cfg_file: Path = self.__wallpaper_config_file("config")
+        if not cfg_file.exists():
+            return dict()
+
+        with open(cfg_file, "r") as f:
+            return json.load(f)
+
     def write_wallpaper_config(self, id: str, changed: dict) -> None:
         cfg: dict = self.read_wallpaper_config(id)
         cfg.update(changed)
         cfg_file: Path = self.__wallpaper_config_file(id)
+
+        with open(cfg_file, "w+") as f:
+            json.dump(cfg, f)
+    
+    def write_global_config(self, changed: dict) -> None:
+        cfg: dict = self.read_wallpaper_config("config")
+        cfg.update(changed)
+        cfg_file: Path = self.__wallpaper_config_file("config")
 
         with open(cfg_file, "w+") as f:
             json.dump(cfg, f)
@@ -92,6 +109,9 @@ class Jsonrpc:
 M = Main()
 jrpc = Jsonrpc()
 
+@jrpc.add_method
+def has_steamcmd() -> str:
+    return shutil.which("steamcmd") is not None
 
 @jrpc.add_method
 def version() -> str:

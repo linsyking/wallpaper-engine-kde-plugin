@@ -99,10 +99,10 @@ cmake --build build --target install_pkg
 ## Usage
 1. *Wallpaper Engine* installed on Steam
 2. Subscribe to some wallpapers on the Workshop
-3. Select the *steamlibrary* folder on the Wallpapers tab of this plugin
-	- The *steamlibrary* which contains the *steamapps* folder
-		- This is usually `~/.local/share/Steam` by default
-	- *Wallpaper Engine* needs to be installed in this *steamlibrary*
+3. Select the *steamapps* folder on the Wallpapers tab of this plugin
+	- The *steamapps* which contains the *common* and *workshop* folder
+		- This is usually `~/.local/share/Steam/steamapps` by default
+	- *Wallpaper Engine* needs to be installed in *steamapps*
 
 ### Restart KDE
 You need to restart plasmashell after **reinstalling the plugin**  

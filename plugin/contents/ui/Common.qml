@@ -185,34 +185,26 @@ QtObject {
     readonly property var regex_source: new RegExp('^(.+)\\+([a-z]+)$', '');
 
     function getWorkshopDir(steamLibraryPath) {
-        return steamLibraryPath + "/steamapps/workshop/content/431960";
-    }
-    function getWorkshopDirs(steamLibraryPath) {
-        return [
-            "/steamapps/workshop/content/431960",
-            "/Steamapps/Workshop/content/431960",
-            "/Steamapps/Workshop/Content/431960",
-            "/steamapps/Workshop/Content/431960",
-        ].map(el => steamLibraryPath + el);
+        return steamLibraryPath + "/workshop/content/431960";
     }
     function getDefProjectsDir(steamLibraryPath) {
-        return steamLibraryPath + "/steamapps/common/wallpaper_engine/projects/defaultprojects";
+        return steamLibraryPath + "/common/wallpaper_engine/projects/defaultprojects";
     }
     function getMyProjectsDir(steamLibraryPath) {
-        return steamLibraryPath + "/steamapps/common/wallpaper_engine/projects/myprojects"
+        return steamLibraryPath + "/common/wallpaper_engine/projects/myprojects"
     }
     function getProjectDirs(steamLibraryPath) {
         return [
-            getWorkshopDirs(steamLibraryPath),
+            getWorkshopDir(steamLibraryPath),
             getDefProjectsDir(steamLibraryPath),
             getMyProjectsDir(steamLibraryPath)
         ];
     }
     function getAssetsPath(steamLibrary) {
-        return steamLibrary + "/steamapps/common/wallpaper_engine/assets";
+        return steamLibrary + "/common/wallpaper_engine/assets";
     }
     function getGlobalConfigPath(steamLibrary) {
-        return steamLibrary + "/steamapps/common/wallpaper_engine/config.json";
+        return steamLibrary + "/common/wallpaper_engine/config.json";
     }
     function getWorkshopUrl(workshopid) {
         return "https://steamcommunity.com/sharedfiles/filedetails/?id=" + workshopid;
