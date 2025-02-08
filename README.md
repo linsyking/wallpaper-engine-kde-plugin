@@ -87,7 +87,7 @@ git submodule update --init --force --recursive
 # 'USE_PLASMAPKG=ON': using kpackagetool tool to install plugin
 cmake -B build -S . -GNinja -DUSE_PLASMAPKG=ON
 cmake --build build
-cmake --install build
+sudo cmake --install build
 
 # Install package (ignore if USE_PLASMAPKG=OFF for system-wide installation)
 cmake --build build --target install_pkg
