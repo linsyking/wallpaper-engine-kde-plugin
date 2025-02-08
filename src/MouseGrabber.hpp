@@ -32,6 +32,7 @@ protected:
 	void mouseMoveEvent(QMouseEvent*) override;
 	void mouseReleaseEvent(QMouseEvent *) override;
 	void mouseDoubleClickEvent(QMouseEvent *) override;
+	void wheelEvent(QWheelEvent *) override;
 	void hoverMoveEvent(QHoverEvent *) override;
 
 signals:
@@ -41,6 +42,7 @@ signals:
 private:
     void sendMouseEvent(QMouseEvent*);
     void sendHoverEvent(QHoverEvent*);
+    void sendWheelEvent(QWheelEvent*);
 	bool m_forceCapture {false};
     QPointer<QQuickItem> m_target {nullptr};
 };

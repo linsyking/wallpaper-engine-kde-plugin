@@ -1,5 +1,4 @@
 #include "MouseGrabber.hpp"
-#include <iostream>
 #include <QLoggingCategory>
 #include <QCoreApplication>
 #include <QHoverEvent>
@@ -45,8 +44,8 @@ void MouseGrabber::sendEvent(QObject* target, QEvent* event) {
 void MouseGrabber::sendMouseEvent(QMouseEvent* event) {
     if (m_target) {
         QMouseEvent temp(event->type(),
-                         mapToItem(m_target, event->localPos()),
-                         event->screenPos(),
+                         mapToItem(m_target, event->position()),
+                         event->globalPosition(),
                          event->button(),
                          event->buttons(),
                          event->modifiers());
@@ -57,9 +56,25 @@ void MouseGrabber::sendMouseEvent(QMouseEvent* event) {
 void MouseGrabber::sendHoverEvent(QHoverEvent* event) {
     if (m_target) {
         QHoverEvent temp(event->type(),
-                         mapToItem(m_target, event->posF()),
+                         mapToItem(m_target, event->position()),
                          mapToItem(m_target, event->oldPosF()),
                          event->modifiers());
+        QCoreApplication::sendEvent(m_target, &temp);
+    }
+}
+
+void MouseGrabber::sendWheelEvent(QWheelEvent* event) {
+    if (m_target) {
+        QWheelEvent temp(mapToItem(m_target, event->position()),
+                         mapToItem(m_target, event->globalPosition()),
+                         event->pixelDelta(),
+                         event->angleDelta(),
+                         event->buttons(),
+                         event->modifiers(),
+                         event->phase(),
+                         event->inverted(),
+                         event->source(),
+                         event->pointingDevice());
         QCoreApplication::sendEvent(m_target, &temp);
     }
 }
